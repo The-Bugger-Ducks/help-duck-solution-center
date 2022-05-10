@@ -1,5 +1,5 @@
 <h1 align="center"> 
-  Microsserviço para manipulação de chamados
+  Microsserviço para manipulação de soluções
 </h1>
 
 Esta API, que permite o gerenciamento de chamados, foi desenvolvida visando sua utilização no projeto "Help Duck" (mais informações vide [este link](https://github.com/The-Bugger-Ducks/help-duck-documentation)).
@@ -12,7 +12,7 @@ As seguintes tecnologias e ferramentas foram utilizadas neste projeto: `Java, Sp
 
 ### :gear: Como utilizar
 
-Para consumir esta API, é preciso seguir o passo a passo abaixo ou utilizar a URL do serviço em nuvem (através deste link: [https://help-duck-tickets.herokuapp.com/tickets/](https://help-duck-tickets.herokuapp.com/tickets/)).
+Para consumir esta API, é preciso seguir o passo a passo abaixo ou utilizar a URL do serviço em nuvem (através deste link: [https://help-duck-solution-center.herokuapp.com/solutions/](https://help-duck-solution-center.herokuapp.com/solutions/)).
 
 - Tutorial para rodar o projeto
 
@@ -49,13 +49,10 @@ O servidor inciará localmente na porta 8081. Use o Insomnia para simular requis
   
 |                                                                    Tipo | Rota                                 | Ação                            |
 | ----------------------------------------------------------------------: | :----------------------------------- | :------------------------------ |
-|    [![](https://img.shields.io/badge/GET-2E8B57?style=for-the-badge)]() | `/tickets/`                          | Listagem de chamados            |
-|    [![](https://img.shields.io/badge/GET-2E8B57?style=for-the-badge)]() | `/tickets/{ticketId}`                | Dados de um chamado específico  |
-|   [![](https://img.shields.io/badge/POST-4682B4?style=for-the-badge)]() | `/tickets/create`                    | Cadastro de chamados            |
-|    [![](https://img.shields.io/badge/PUT-9370DB?style=for-the-badge)]() | `/tickets/update`                    | Alteração dos dados do chamado  |
-| [![](https://img.shields.io/badge/DELETE-CD853F?style=for-the-badge)]() | `/tickets/delete/{ticketId}`         | Exclusão de chamados            |
-|    [![](https://img.shields.io/badge/PUT-9370DB?style=for-the-badge)]() | `/helpUser/reserveTicket/{ticketId}` | Reserva de chamados             |
-|    [![](https://img.shields.io/badge/PUT-9370DB?style=for-the-badge)]() | `/helpUser/updateComment/{ticketId}` | Adição de comentário no chamado |
+|    [![](https://img.shields.io/badge/GET-2E8B57?style=for-the-badge)]() | `/solutions/`                          | Listagem de soluções            |
+|    [![](https://img.shields.io/badge/GET-2E8B57?style=for-the-badge)]() | `/solutions/{solutionId}`                | Dados de uma solução específica  |
+|   [![](https://img.shields.io/badge/POST-4682B4?style=for-the-badge)]() | `/solutions/create`                    | Cadastro de soluções            |
+| [![](https://img.shields.io/badge/DELETE-CD853F?style=for-the-badge)]() | `/solutions/delete/{ticketId}`         | Exclusão de soluções            |
 
 
 </div>
@@ -70,7 +67,7 @@ O servidor inciará localmente na porta 8081. Use o Insomnia para simular requis
 | :open_file_folder: main/ .../ entity                        | Arquivos com funções mais especificas, ex: atualizador, adicionador de links para HATEOAS, etc |
 | :open_file_folder: main/ .../ enums                         | Arquivos de padronização de entrada para campos específicos no banco de dados                  |
 | :open_file_folder: main/ .../ repository                    | Arquivo para utilização de CRUD de entidades (collection - mongodb) do projeto                 |
-| :page_facing_up: main/ .../ HelpDuckTicketsApplication.java | Arquivo principal do projeto                                                                   |
+| :page_facing_up: main/ .../ HelpduckSolutionCenterApplication.java | Arquivo principal do projeto                                                                   |
 | :open_file_folder: main/ resources/                         | Arquivos para configurações globais do projeto (ex: credenciais em banco de dados)             |
 | :page_facing_up: docker-compose                             | Arquivo usado para "conteinerizar" um banco mongo local                                        |
 | :page_facing_up: pom.xml                                    | Arquivo usado gerenciar as dependencias do projeto com o Maven                                 |
