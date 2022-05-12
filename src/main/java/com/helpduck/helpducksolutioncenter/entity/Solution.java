@@ -14,7 +14,7 @@ public class Solution {
 
   @Id
   private String id;
-  private String idTicket;
+  private String ticketId;
   private String titleProblem;
 
   // tags related to issues that the solution is valid for

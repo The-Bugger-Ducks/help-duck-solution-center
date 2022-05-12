@@ -18,7 +18,7 @@ public class SolutionHateoas extends RepresentationModel<SolutionHateoas> {
 
   @Id
   private String id;
-  private String idTicket;
+  private String ticketId;
   private String titleProblem;
   private List<String> problemTags;
 
@@ -31,7 +31,7 @@ public class SolutionHateoas extends RepresentationModel<SolutionHateoas> {
 
   public SolutionHateoas(Solution solution) {
     this.id = solution.getId();
-    this.idTicket = solution.getIdTicket();
+    this.ticketId = solution.getTicketId();
     this.problemTags = solution.getProblemTags();
     this.titleProblem = solution.getTitleProblem();
 
