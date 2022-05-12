@@ -47,6 +47,16 @@ public class SolutionService {
     return SolutionHateoas;
   }
 
+  @Transactional(readOnly = true)
+  public SolutionHateoas findByIdTicketHateoas(String id) {
+    Optional<Solution> solution = repository.findByIdTicket(id);
+    if (solution.isEmpty()) {
+      return null;
+    }
+    SolutionHateoas SolutionHateoas = new SolutionHateoas(solution.get());
+    return SolutionHateoas;
+  }
+
   public Solution create(Solution solution) {
     solution.setUpVote(0);
     solution.setDownVote(0);

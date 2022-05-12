@@ -58,6 +58,18 @@ public class SolutionController {
     return new ResponseEntity<SolutionHateoas>(solutionHateoas, HttpStatus.FOUND);
   }
 
+  @GetMapping("/ticket/{ticketId}")
+  public ResponseEntity<SolutionHateoas> getSolutionByIdTicket(@PathVariable String ticketId) {
+
+    SolutionHateoas solutionHateoas = service.findByIdTicketHateoas(ticketId);
+    if (solutionHateoas == null) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    linkAdder.addLink(solutionHateoas);
+    return new ResponseEntity<SolutionHateoas>(solutionHateoas, HttpStatus.OK);
+  }
+
   @PostMapping("/create")
   public ResponseEntity<Solution> createSolution(@RequestBody Solution solution) {
 
