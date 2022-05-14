@@ -49,7 +49,7 @@ public class SolutionService {
 
   @Transactional(readOnly = true)
   public SolutionHateoas findByIdTicketHateoas(String id) {
-    Optional<Solution> solution = repository.findByIdTicket(id);
+    Optional<Solution> solution = repository.findByTicketId(id);
     if (solution.isEmpty()) {
       return null;
     }
