@@ -5,6 +5,7 @@ import java.util.Optional;
 import com.helpduck.helpducksolutioncenter.entity.Solution;
 import com.helpduck.helpducksolutioncenter.model.hateoas.SolutionHateoas;
 import com.helpduck.helpducksolutioncenter.model.solutions.SolutionLinkAdder;
+import com.helpduck.helpducksolutioncenter.model.solutions.SolutionUpdater;
 import com.helpduck.helpducksolutioncenter.repository.SolutionRepository;
 import com.helpduck.helpducksolutioncenter.service.SolutionService;
 
@@ -18,12 +19,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("solutions")
+@RequestMapping("/solutions")
 public class SolutionController {
   @Autowired
   private SolutionRepository repository;
@@ -81,23 +83,21 @@ public class SolutionController {
     return new ResponseEntity<Solution>(solutionInserted, HttpStatus.CREATED);
   }
 
-  // @PutMapping("/update")
-  // public ResponseEntity<HttpStatus> updateSolution(@RequestBody Solution
-  // updatedSolution) {
+  @PutMapping("/update")
+  public ResponseEntity<HttpStatus> updateSolution(@RequestBody Solution updatedSolution) {
 
-  // HttpStatus status = HttpStatus.BAD_REQUEST;
-  // Optional<Solution> solutionOptional =
-  // repository.findById(updatedSolution.getId());
+    HttpStatus status = HttpStatus.BAD_REQUEST;
+    Optional<Solution> solutionOptional = repository.findById(updatedSolution.getId());
 
-  // if (!solutionOptional.isEmpty()) {
-  // Solution solution = solutionOptional.get();
-  // SolutionUpdater updater = new SolutionUpdater();
-  // updater.update(solution, updatedSolution);
-  // repository.save(solution);
-  // status = HttpStatus.OK;
-  // }
-  // return new ResponseEntity<HttpStatus>(status);
-  // }
+    if (!solutionOptional.isEmpty()) {
+      Solution solution = solutionOptional.get();
+      SolutionUpdater updater = new SolutionUpdater();
+      updater.update(solution, updatedSolution);
+      repository.save(solution);
+      status = HttpStatus.OK;
+    }
+    return new ResponseEntity<HttpStatus>(status);
+  }
 
   @DeleteMapping("/delete/{solutionId}")
   public ResponseEntity<HttpStatus> deleteSolution(@PathVariable String solutionId) {

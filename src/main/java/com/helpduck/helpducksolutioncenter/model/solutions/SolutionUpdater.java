@@ -7,6 +7,6 @@ public class SolutionUpdater {
 	// private NullStringVerifier verifier = new NullStringVerifier();
 
 	public void update(Solution solution, Solution updatedSolution) {
-
+		solution.setSolutionComment((updatedSolution.getSolutionComment()));
 	}
 }
