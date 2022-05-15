@@ -50,8 +50,10 @@ O servidor inciará localmente na porta 8081. Use o Insomnia para simular requis
 |                                                                    Tipo | Rota                                 | Ação                            |
 | ----------------------------------------------------------------------: | :----------------------------------- | :------------------------------ |
 |    [![](https://img.shields.io/badge/GET-2E8B57?style=for-the-badge)]() | `/solutions/`                          | Listagem de soluções            |
-|    [![](https://img.shields.io/badge/GET-2E8B57?style=for-the-badge)]() | `/solutions/{solutionId}`                | Dados de uma solução específica  |
+|    [![](https://img.shields.io/badge/GET-2E8B57?style=for-the-badge)]() | `/solutions/ticket/{ticketId}`          | Listagem de soluções por id de um chamado            |
+|    [![](https://img.shields.io/badge/GET-2E8B57?style=for-the-badge)]() | `/solutions/{solutionId}`              | Dados de uma solução específica  |
 |   [![](https://img.shields.io/badge/POST-4682B4?style=for-the-badge)]() | `/solutions/create`                    | Cadastro de soluções            |
+|    [![](https://img.shields.io/badge/PUT-9370DB?style=for-the-badge)]() | `/solutions/update`      | Alteração dos dados de uma solução |
 | [![](https://img.shields.io/badge/DELETE-CD853F?style=for-the-badge)]() | `/solutions/delete/{ticketId}`         | Exclusão de soluções            |
 
 
