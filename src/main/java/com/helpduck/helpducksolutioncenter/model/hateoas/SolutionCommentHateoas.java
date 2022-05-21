@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.helpduck.helpducksolutioncenter.entity.Comment;
-import com.helpduck.helpducksolutioncenter.entity.Solution;
+import com.helpduck.helpducksolutioncenter.entity.SolutionComment;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.hateoas.RepresentationModel;
@@ -14,7 +14,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SolutionHateoas extends RepresentationModel<SolutionHateoas> {
+public class SolutionCommentHateoas extends RepresentationModel<SolutionCommentHateoas> {
 
   @Id
   private String id;
@@ -29,7 +29,7 @@ public class SolutionHateoas extends RepresentationModel<SolutionHateoas> {
 
   private LocalDateTime createdAt;
 
-  public SolutionHateoas(Solution solution) {
+  public SolutionCommentHateoas(SolutionComment solution) {
     this.id = solution.getId();
     this.ticketId = solution.getTicketId();
     this.problemTags = solution.getProblemTags();

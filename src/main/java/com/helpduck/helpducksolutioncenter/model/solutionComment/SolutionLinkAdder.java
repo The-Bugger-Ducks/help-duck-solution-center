@@ -1,8 +1,8 @@
-package com.helpduck.helpducksolutioncenter.model.solutions;
+package com.helpduck.helpducksolutioncenter.model.solutionComment;
 
-import com.helpduck.helpducksolutioncenter.controller.SolutionController;
+import com.helpduck.helpducksolutioncenter.controller.SolutionCommentController;
 import com.helpduck.helpducksolutioncenter.model.LinkAdder;
-import com.helpduck.helpducksolutioncenter.model.hateoas.SolutionHateoas;
+import com.helpduck.helpducksolutioncenter.model.hateoas.SolutionCommentHateoas;
 
 import org.springframework.data.domain.Page;
 import org.springframework.hateoas.Link;
@@ -10,15 +10,15 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SolutionLinkAdder implements LinkAdder<SolutionHateoas> {
+public class SolutionLinkAdder implements LinkAdder<SolutionCommentHateoas> {
 
 	@Override
-	public void addLink(Page<SolutionHateoas> solutions) {
-		for (SolutionHateoas solution : solutions) {
+	public void addLink(Page<SolutionCommentHateoas> solutions) {
+		for (SolutionCommentHateoas solution : solutions) {
 			String id = solution.getId();
 			Link linkToItself = WebMvcLinkBuilder
 					.linkTo(WebMvcLinkBuilder
-							.methodOn(SolutionController.class)
+							.methodOn(SolutionCommentController.class)
 							.getSolution(id))
 					.withSelfRel();
 			solution.add(linkToItself);
@@ -26,10 +26,10 @@ public class SolutionLinkAdder implements LinkAdder<SolutionHateoas> {
 	}
 
 	@Override
-	public void addLink(SolutionHateoas solution) {
+	public void addLink(SolutionCommentHateoas solution) {
 		Link linkToAllsolutions = WebMvcLinkBuilder
 				.linkTo(WebMvcLinkBuilder
-						.methodOn(SolutionController.class)
+						.methodOn(SolutionCommentController.class)
 						.getSolutions(null))
 				.withRel("solutions");
 		solution.add(linkToAllsolutions);

@@ -2,17 +2,16 @@ package com.helpduck.helpducksolutioncenter.controller;
 
 import java.util.Optional;
 
-import com.helpduck.helpducksolutioncenter.entity.Solution;
-import com.helpduck.helpducksolutioncenter.model.hateoas.SolutionHateoas;
-import com.helpduck.helpducksolutioncenter.model.solutions.SolutionLinkAdder;
-import com.helpduck.helpducksolutioncenter.model.solutions.SolutionUpdater;
+import com.helpduck.helpducksolutioncenter.entity.SolutionComment;
+import com.helpduck.helpducksolutioncenter.model.hateoas.SolutionCommentHateoas;
+import com.helpduck.helpducksolutioncenter.model.solutionComment.SolutionLinkAdder;
+import com.helpduck.helpducksolutioncenter.model.solutionComment.SolutionUpdater;
 import com.helpduck.helpducksolutioncenter.repository.SolutionRepository;
-import com.helpduck.helpducksolutioncenter.service.SolutionService;
+import com.helpduck.helpducksolutioncenter.service.SolutionCommentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,71 +25,69 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/solutions")
-public class SolutionController {
+public class SolutionCommentController {
   @Autowired
   private SolutionRepository repository;
   @Autowired
-  private SolutionService service;
+  private SolutionCommentService service;
   @Autowired
   SolutionLinkAdder linkAdder;
 
-  MongoTemplate mongoTemplate;
-
   @GetMapping("/")
-  public ResponseEntity<Page<SolutionHateoas>> getSolutions(Pageable pageable) {
+  public ResponseEntity<Page<SolutionCommentHateoas>> getSolutions(Pageable pageable) {
 
-    ResponseEntity<Page<SolutionHateoas>> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    Page<SolutionHateoas> pageSolutionHateoas = service.findAll(pageable);
+    ResponseEntity<Page<SolutionCommentHateoas>> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    Page<SolutionCommentHateoas> pageSolutionHateoas = service.findAll(pageable);
     if (!pageSolutionHateoas.isEmpty()) {
       linkAdder.addLink(pageSolutionHateoas);
-      response = new ResponseEntity<Page<SolutionHateoas>>(pageSolutionHateoas, HttpStatus.FOUND);
+      response = new ResponseEntity<Page<SolutionCommentHateoas>>(pageSolutionHateoas, HttpStatus.FOUND);
     }
     return response;
   }
 
   @GetMapping("/{solutionId}")
-  public ResponseEntity<SolutionHateoas> getSolution(@PathVariable String solutionId) {
+  public ResponseEntity<SolutionCommentHateoas> getSolution(@PathVariable String solutionId) {
 
-    SolutionHateoas solutionHateoas = service.findByIdHateoas(solutionId);
+    SolutionCommentHateoas solutionHateoas = service.findByIdHateoas(solutionId);
     if (solutionHateoas == null) {
       new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     linkAdder.addLink(solutionHateoas);
-    return new ResponseEntity<SolutionHateoas>(solutionHateoas, HttpStatus.FOUND);
+    return new ResponseEntity<SolutionCommentHateoas>(solutionHateoas, HttpStatus.FOUND);
   }
 
   @GetMapping("/ticket/{ticketId}")
-  public ResponseEntity<SolutionHateoas> getSolutionByIdTicket(@PathVariable String ticketId) {
+  public ResponseEntity<SolutionCommentHateoas> getSolutionByIdTicket(@PathVariable String ticketId) {
 
-    SolutionHateoas solutionHateoas = service.findByIdTicketHateoas(ticketId);
+    SolutionCommentHateoas solutionHateoas = service.findByIdTicketHateoas(ticketId);
     if (solutionHateoas == null) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     linkAdder.addLink(solutionHateoas);
-    return new ResponseEntity<SolutionHateoas>(solutionHateoas, HttpStatus.OK);
+    return new ResponseEntity<SolutionCommentHateoas>(solutionHateoas, HttpStatus.OK);
   }
 
   @PostMapping("/create")
-  public ResponseEntity<Solution> createSolution(@RequestBody Solution solution) {
+  public ResponseEntity<SolutionComment> createSolution(@RequestBody SolutionComment solution) {
 
     if (solution.getId() != null) {
-      return new ResponseEntity<Solution>(HttpStatus.CONFLICT);
+      return new ResponseEntity<SolutionComment>(HttpStatus.CONFLICT);
     }
 
-    Solution solutionInserted = service.create(solution);
-    return new ResponseEntity<Solution>(solutionInserted, HttpStatus.CREATED);
+    SolutionComment solutionInserted = service.create(solution);
+    return new ResponseEntity<SolutionComment>(solutionInserted, HttpStatus.CREATED);
   }
 
   @PutMapping("/update")
-  public ResponseEntity<HttpStatus> updateSolution(@RequestBody Solution updatedSolution) {
+  public ResponseEntity<HttpStatus> updateSolution(@RequestBody SolutionComment updatedSolution) {
 
     HttpStatus status = HttpStatus.BAD_REQUEST;
-    Optional<Solution> solutionOptional = repository.findById(updatedSolution.getId());
+    Optional<SolutionComment> solutionOptional = repository.findById(updatedSolution.getId());
 
     if (!solutionOptional.isEmpty()) {
-      Solution solution = solutionOptional.get();
+      SolutionComment solution = solutionOptional.get();
       SolutionUpdater updater = new SolutionUpdater();
       updater.update(solution, updatedSolution);
       repository.save(solution);
@@ -103,7 +100,7 @@ public class SolutionController {
   public ResponseEntity<HttpStatus> deleteSolution(@PathVariable String solutionId) {
 
     HttpStatus status = HttpStatus.BAD_REQUEST;
-    Optional<Solution> solutionOptional = repository.findById(solutionId);
+    Optional<SolutionComment> solutionOptional = repository.findById(solutionId);
 
     if (!solutionOptional.isEmpty()) {
       repository.deleteById(solutionId);
