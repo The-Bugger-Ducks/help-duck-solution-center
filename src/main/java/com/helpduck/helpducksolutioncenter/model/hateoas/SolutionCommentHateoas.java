@@ -37,7 +37,7 @@ public class SolutionCommentHateoas extends RepresentationModel<SolutionCommentH
 
     this.solutionComment = solution.getSolutionComment();
 
-    this.upVote = solution.getDownVote();
+    this.upVote = solution.getUpVote();
     this.downVote = solution.getDownVote();
 
     this.createdAt = solution.getCreatedAt();
