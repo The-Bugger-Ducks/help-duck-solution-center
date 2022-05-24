@@ -3,6 +3,7 @@ package com.helpduck.helpducksolutioncenter.controller;
 import java.util.Optional;
 
 import com.helpduck.helpducksolutioncenter.entity.Problem;
+import com.helpduck.helpducksolutioncenter.entity.Solution;
 import com.helpduck.helpducksolutioncenter.model.hateoas.ProblemHateoas;
 import com.helpduck.helpducksolutioncenter.model.problem.ProblemLinkAdder;
 import com.helpduck.helpducksolutioncenter.model.problem.ProblemUpdater;
@@ -68,16 +69,16 @@ public class ProblemController {
     return new ResponseEntity<Problem>(problemInserted, HttpStatus.CREATED);
   }
 
-  @PutMapping("/update")
-  public ResponseEntity<HttpStatus> updateProblem(@RequestBody Problem updatedProblem) {
+  @PutMapping("/update/{problemId}")
+  public ResponseEntity<HttpStatus> updateProblem(@PathVariable String problemId, @RequestBody Solution newSolution) {
 
     HttpStatus status = HttpStatus.BAD_REQUEST;
-    Optional<Problem> problemOptional = repository.findById(updatedProblem.getId());
+    Optional<Problem> problemOptional = repository.findById(problemId);
 
     if (!problemOptional.isEmpty()) {
       Problem problem = problemOptional.get();
       ProblemUpdater updater = new ProblemUpdater();
-      updater.update(problem, updatedProblem);
+      updater.incrementSolutionList(problem, newSolution);
       repository.save(problem);
       status = HttpStatus.OK;
     }
