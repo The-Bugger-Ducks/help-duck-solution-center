@@ -2,12 +2,12 @@ package com.helpduck.helpducksolutioncenter.repository;
 
 import java.util.Optional;
 
-import com.helpduck.helpducksolutioncenter.entity.Solution;
+import com.helpduck.helpducksolutioncenter.entity.SolutionComment;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
-public interface SolutionRepository extends MongoRepository<Solution, String> {
+public interface SolutionRepository extends MongoRepository<SolutionComment, String> {
   @Query("{'ticketId': ?0}")
-  Optional<Solution> findByTicketId(String id);
+  Optional<SolutionComment> findByTicketId(String id);
 }
