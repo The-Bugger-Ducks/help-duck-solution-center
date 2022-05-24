@@ -51,9 +51,9 @@ public class ProblemController {
 
     ResponseEntity<ProblemHateoas> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
     ProblemHateoas problemHateoas = service.findByIdHateoas(problemId);
-    if (problemHateoas == null) {
+    if (problemHateoas != null) {
       linkAdder.addLink(problemHateoas);
-      response = new ResponseEntity<ProblemHateoas>(problemHateoas, HttpStatus.FOUND);
+      return new ResponseEntity<ProblemHateoas>(problemHateoas, HttpStatus.FOUND);
     }
     return response;
   }
