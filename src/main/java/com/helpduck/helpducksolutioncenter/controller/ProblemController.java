@@ -1,5 +1,6 @@
 package com.helpduck.helpducksolutioncenter.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.helpduck.helpducksolutioncenter.entity.Problem;
@@ -54,6 +55,17 @@ public class ProblemController {
     if (problemHateoas != null) {
       linkAdder.addLink(problemHateoas);
       return new ResponseEntity<ProblemHateoas>(problemHateoas, HttpStatus.FOUND);
+    }
+    return response;
+  }
+
+  @GetMapping("/search/{searchTitle}")
+  public ResponseEntity<List<Problem>> getAllSolutionByTitle(@PathVariable String searchTitle) {
+
+    ResponseEntity<List<Problem>> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    List<Problem> problemOptional = repository.findAllBySolutionTitle(searchTitle);
+    if (problemOptional != null) {
+      return new ResponseEntity<List<Problem>>(problemOptional, HttpStatus.FOUND);
     }
     return response;
   }
