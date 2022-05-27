@@ -10,7 +10,7 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SolutionLinkAdder implements LinkAdder<SolutionCommentHateoas> {
+public class SolutionCommentLinkAdder implements LinkAdder<SolutionCommentHateoas> {
 
 	@Override
 	public void addLink(Page<SolutionCommentHateoas> solutions) {

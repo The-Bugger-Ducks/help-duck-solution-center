@@ -5,7 +5,7 @@ import java.util.Optional;
 import com.helpduck.helpducksolutioncenter.controller.dto.SolutionVoteDTO;
 import com.helpduck.helpducksolutioncenter.entity.SolutionComment;
 import com.helpduck.helpducksolutioncenter.model.solutionComment.SolutionUpdater;
-import com.helpduck.helpducksolutioncenter.repository.SolutionRepository;
+import com.helpduck.helpducksolutioncenter.repository.SolutionCommentRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/solutions")
 public class SolutionCommentVotingController {
   @Autowired
-  private SolutionRepository repository;
+  private SolutionCommentRepository repository;
 
   @PostMapping("/vote")
   public ResponseEntity<HttpStatus> updateSolution(@RequestBody SolutionVoteDTO solutionVote) {
