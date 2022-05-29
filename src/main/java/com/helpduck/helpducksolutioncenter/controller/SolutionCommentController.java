@@ -4,9 +4,9 @@ import java.util.Optional;
 
 import com.helpduck.helpducksolutioncenter.entity.SolutionComment;
 import com.helpduck.helpducksolutioncenter.model.hateoas.SolutionCommentHateoas;
-import com.helpduck.helpducksolutioncenter.model.solutionComment.SolutionLinkAdder;
+import com.helpduck.helpducksolutioncenter.model.solutionComment.SolutionCommentLinkAdder;
 import com.helpduck.helpducksolutioncenter.model.solutionComment.SolutionUpdater;
-import com.helpduck.helpducksolutioncenter.repository.SolutionRepository;
+import com.helpduck.helpducksolutioncenter.repository.SolutionCommentRepository;
 import com.helpduck.helpducksolutioncenter.service.SolutionCommentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +27,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/solutions")
 public class SolutionCommentController {
   @Autowired
-  private SolutionRepository repository;
+  private SolutionCommentRepository repository;
   @Autowired
   private SolutionCommentService service;
   @Autowired
-  SolutionLinkAdder linkAdder;
+  SolutionCommentLinkAdder linkAdder;
 
   @GetMapping("/")
   public ResponseEntity<Page<SolutionCommentHateoas>> getSolutions(Pageable pageable) {

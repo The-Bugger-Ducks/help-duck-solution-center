@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import com.helpduck.helpducksolutioncenter.entity.SolutionComment;
 import com.helpduck.helpducksolutioncenter.model.hateoas.SolutionCommentHateoas;
-import com.helpduck.helpducksolutioncenter.repository.SolutionRepository;
+import com.helpduck.helpducksolutioncenter.repository.SolutionCommentRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class SolutionCommentService {
 
   @Autowired
-  private SolutionRepository repository;
+  private SolutionCommentRepository repository;
 
   @Transactional(readOnly = true)
   public Page<SolutionCommentHateoas> findAll(Pageable pageable) {
