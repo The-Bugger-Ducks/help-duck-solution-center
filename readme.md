@@ -1,5 +1,5 @@
 <h1 align="center"> 
-  Microsserviço para manipulação de soluções
+  Microsserviço para manipulação de problemas e soluções
 </h1>
 
 Esta API, que permite o gerenciamento de chamados, foi desenvolvida visando sua utilização no projeto "Help Duck" (mais informações vide [este link](https://github.com/The-Bugger-Ducks/help-duck-documentation)).
@@ -12,7 +12,7 @@ As seguintes tecnologias e ferramentas foram utilizadas neste projeto: `Java, Sp
 
 ### :gear: Como utilizar
 
-Para consumir esta API, é preciso seguir o passo a passo abaixo ou utilizar a URL do serviço em nuvem (através deste link: [https://help-duck-solution-center.herokuapp.com/solutions/](https://help-duck-solution-center.herokuapp.com/solutions/)).
+Para consumir esta API, é preciso seguir o passo a passo abaixo ou utilizar a URL do serviço em nuvem (através deste link: [https://help-duck-solution-center.herokuapp.com/](https://help-duck-solution-center.herokuapp.com/)).
 
 - Tutorial para rodar o projeto
 
@@ -32,14 +32,12 @@ Para prosseguir, é preciso que todas as ferramentas necessárias estejam devida
 
 ```bash
 # Baixe este repositório ou clone pelo Git usando o comando:
-$ git clone https://github.com/The-Bugger-Ducks/help-duck-requests.git
+$ git clone https://github.com/The-Bugger-Ducks/help-duck-solution-center.git
 
 # Acesse a pasta do projeto
-$ cd help-duck-requests
+$ cd help-duck-solution-center
 
-# Espere o Maven carregar as dependências do projeto (são listadas no arquivo pom.xml)
-
-# Execute o projeto utilizando sua IDE preferida (Eclipse, VS Code, IntelliJ, etc.)
+# Abra o projeto utilizando sua IDE preferida (Eclipse, VS Code, IntelliJ, etc.), espere o Maven carregar as dependências do projeto (são listadas no arquivo pom.xml) e execute!
 ```
 
 O servidor inciará localmente na porta 8081. Use o Insomnia para simular requisições e respostas das rotas (pelo link [https://localhost:8081](https://localhost:8081)) ou utilize o projeto fron-end do "Help Duck" para executar as funcionalidades da aplicação (acesse o repositório por [este link](https://github.com/The-Bugger-Ducks/help-duck-web)).
@@ -47,30 +45,40 @@ O servidor inciará localmente na porta 8081. Use o Insomnia para simular requis
 ## :railway_track: Rotas disponíveis
 <div align="center">
   
-|                                                                    Tipo | Rota                                 | Ação                            |
-| ----------------------------------------------------------------------: | :----------------------------------- | :------------------------------ |
-|    [![](https://img.shields.io/badge/GET-2E8B57?style=for-the-badge)]() | `/solutions/`                          | Listagem de soluções            |
-|    [![](https://img.shields.io/badge/GET-2E8B57?style=for-the-badge)]() | `/solutions/ticket/{ticketId}`          | Listagem de soluções por id de um chamado            |
-|    [![](https://img.shields.io/badge/GET-2E8B57?style=for-the-badge)]() | `/solutions/{solutionId}`              | Dados de uma solução específica  |
-|   [![](https://img.shields.io/badge/POST-4682B4?style=for-the-badge)]() | `/solutions/create`                    | Cadastro de soluções            |
-|    [![](https://img.shields.io/badge/PUT-9370DB?style=for-the-badge)]() | `/solutions/update`      | Alteração dos dados de uma solução |
-| [![](https://img.shields.io/badge/DELETE-CD853F?style=for-the-badge)]() | `/solutions/delete/{ticketId}`         | Exclusão de soluções            |
-
-
+|                                                                    Tipo | Rota                                 | Ação                               |
+| ----------------------------------------------------------------------: | :----------------------------------- | :--------------------------------- |
+|   <hr>                                                                  |  <hr>                                | **Controle de soluções de chamados**|
+|    [![](https://img.shields.io/badge/GET-2E8B57?style=for-the-badge)]() | `/solutions/`                        | Listagem de soluções               |
+|    [![](https://img.shields.io/badge/GET-2E8B57?style=for-the-badge)]() | `/solutions/ticket/{ticketId}`       | Listagem de soluções por id de um chamado |
+|    [![](https://img.shields.io/badge/GET-2E8B57?style=for-the-badge)]() | `/solutions/{solutionId}`            | Dados de uma solução específica    |
+|   [![](https://img.shields.io/badge/POST-4682B4?style=for-the-badge)]() | `/solutions/create`                  | Cadastro de soluções               |
+|    [![](https://img.shields.io/badge/PUT-9370DB?style=for-the-badge)]() | `/solutions/update`                  | Alteração dos dados de uma solução |
+| [![](https://img.shields.io/badge/DELETE-CD853F?style=for-the-badge)]() | `/solutions/delete/{solutionId}`     | Exclusão de soluções               |
+|   [![](https://img.shields.io/badge/POST-4682B4?style=for-the-badge)]() | `/solutions/vote`                    | Computa os votos de uma solução    |
+|   <hr>                                                                  |   <hr>                               | **Controle de problemas**          |
+|    [![](https://img.shields.io/badge/GET-2E8B57?style=for-the-badge)]() | `/problems/`                         | Listagem de problemas              |
+|    [![](https://img.shields.io/badge/GET-2E8B57?style=for-the-badge)]() | `/problems/{problemId}`              | Dados de um problema específico    |
+|   [![](https://img.shields.io/badge/POST-4682B4?style=for-the-badge)]() | `/problems/create`                   | Cadastro de problemas              |
+|    <hr>                                                                 |   <hr>                               | **Controle de soluções de problemas**|
+|    [![](https://img.shields.io/badge/GET-2E8B57?style=for-the-badge)]() | `/solution/`                         | Listagem de soluções               |
+|    [![](https://img.shields.io/badge/GET-2E8B57?style=for-the-badge)]() | `/solution/{solutionId}`             | Dados de uma solução específica    |
+|    [![](https://img.shields.io/badge/GET-2E8B57?style=for-the-badge)]() | `/solution/search/{searchTitle}`     | Busca soluções por palavra chave   |
+|   [![](https://img.shields.io/badge/POST-4682B4?style=for-the-badge)]() | `/solution/create`                   | Cadastro de nova solução           |
+  
 </div>
 
 ### Explicação da estrutura das pastas
 
-| Pasta                                                       | Definição                                                                                      |
-| ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| :open_file_folder: main/ .../                               | Arquivos com o código fonte do projeto                                                         |
-| :open_file_folder: main/ .../ config                        | Configuração de cors, csrf, etc                                                                |
-| :open_file_folder: main/ .../ controller                    | Arquivos com os métodos de requisição das rotas                                                |
-| :open_file_folder: main/ .../ entity                        | Arquivos com funções mais especificas, ex: atualizador, adicionador de links para HATEOAS, etc |
-| :open_file_folder: main/ .../ enums                         | Arquivos de padronização de entrada para campos específicos no banco de dados                  |
-| :open_file_folder: main/ .../ repository                    | Arquivo para utilização de CRUD de entidades (collection - mongodb) do projeto                 |
-| :page_facing_up: main/ .../ HelpduckSolutionCenterApplication.java | Arquivo principal do projeto                                                                   |
-| :open_file_folder: main/ resources/                         | Arquivos para configurações globais do projeto (ex: credenciais em banco de dados)             |
-| :page_facing_up: docker-compose                             | Arquivo usado para "conteinerizar" um banco mongo local                                        |
-| :page_facing_up: pom.xml                                    | Arquivo usado gerenciar as dependencias do projeto com o Maven                                 |
+| Pasta                                                       | Definição                                                                              |
+| ----------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| :open_file_folder: main/ .../                               | Arquivos com o código fonte do projeto                                                 |
+| :open_file_folder: main/ .../ config                        | Configuração de cors, csrf, etc                                                        |
+| :open_file_folder: main/ .../ controller                    | Arquivos com os métodos de requisição das rotas                                        |
+| :open_file_folder: main/ .../ entity                | Arquivos com funções mais especificas, ex: atualizador, adicionador de links para HATEOAS, etc |
+| :open_file_folder: main/ .../ enums                         | Arquivos de padronização de entrada para campos específicos no banco de dados          |
+| :open_file_folder: main/ .../ repository                    | Arquivo para utilização de CRUD de entidades (collection - mongodb) do projeto         |
+| :page_facing_up: main/ .../ HelpduckSolutionCenterApplication.java | Arquivo principal do projeto                                                    |
+| :open_file_folder: main/ resources/                         | Arquivos para configurações globais do projeto (ex: credenciais em banco de dados)     |
+| :page_facing_up: docker-compose                             | Arquivo usado para "conteinerizar" um banco mongo local                                |
+| :page_facing_up: pom.xml                                    | Arquivo usado gerenciar as dependencias do projeto com o Maven                         |
 
